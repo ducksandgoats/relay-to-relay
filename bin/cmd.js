@@ -14,36 +14,27 @@ const argv = minimist(process.argv.slice(2), {
     'help',
     // 'turnon',
     // 'turnoff',
-    'trust-proxy',
     'version',
     'ev',
-    'status'
+    'relay'
   ],
   string: [
     'domain',
     'host',
     'hashes',
-    'pub',
-    'priv',
-    'index',
-    'pub',
-    'priv',
     'server'
   ],
   default: {
     'port': 10509,
     'host': '0.0.0.0',
     'domain': '',
-    'trust-proxy': null,
-    'auth': true,
-    'dir': path.join(process.cwd(), 'data'),
     'hashes': '',
     'user': {},
     'init': true,
     'timer': {},
     'limit': {},
     'ev': false,
-    'status': true,
+    'relay': false,
     'server': '0.0.0.0'
   }
 })
@@ -83,27 +74,14 @@ if (argv.help) {
   process.exit(0)
 }
 
-if(!fs.existsSync(argv['dir'])){
-  fs.mkdirSync(argv['dir'], {recursive: true})
-}
-
-if(argv['pub'] && argv['priv']){
-  argv['user'] = {pub: argv['pub'], priv: argv['priv']}
-}
-
 const server = new Server({
   timer: argv['timer'],
   trustProxy: argv['trust-proxy'],
   domain: argv['domain'],
-  auth: argv['auth'],
-  dir: argv['dir'],
   host: argv['host'],
   port: argv['port'],
   hashes: argv['hashes'].split(',').filter(Boolean),
-  user: argv['user'],
-  index: argv['index'],
   init: argv['init'],
-  stats: argv['stats'],
   domain: argv['domain']
 })
 
