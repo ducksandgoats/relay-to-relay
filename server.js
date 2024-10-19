@@ -188,7 +188,7 @@ export default class Server extends Events {
                   socket.relays = []
                   socket.active = true
                   this.servers.set(socket.id, socket)
-                  socket.send(JSON.stringify({id: this.id, address: this.address, web: this.web, host: this.host, port: this.port, domain: this.domain, relay: hash, action: 'session'}))
+                  socket.send(JSON.stringify({id: this.id, address: this.address, web: this.web, host: this.host, port: this.port, domain: this.domain, relay, action: 'session'}))
                   this.onServerConnection(socket)
                 }
               }
