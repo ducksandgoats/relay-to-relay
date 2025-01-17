@@ -808,6 +808,11 @@ export default class Client extends Events {
         }
     }
 
+    // useChannel(chan){
+        // get rtc channel ready
+        // uses handleChannel function to bring in external rtc channel
+    // }
+
     tracks(){
         return {total: this.channels.size + this.temps.size, temp: this.temps.size, conn: this.channels.size}
     }
